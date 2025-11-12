@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>L'Oréal Smart Product Advisor</title>
+
+    <!-- Material icons + Montserrat -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -12,55 +14,76 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="page-wrapper">
-      <!------- Header / Branding ------->
+    <div
+      class="page-wrapper"
+      role="application"
+      aria-label="L'Oréal Smart Product Advisor"
+    >
       <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
+        <h1 class="brand">
+          <img
+            src="img/loreal-logo.png"
+            alt="L'Oréal logo"
+            class="brand-logo"
+          />
+        </h1>
+        <h2 class="site-title">Smart Product Advisor</h2>
+        <p class="site-sub">
+          Personalized recommendations for makeup, skincare, haircare, and
+          fragrances
+        </p>
       </header>
 
-      <!------- Chat Area ------->
-      <main>
-        <section class="chatbox">
-          <div id="chatWindow" class="chat-window">
-            <!-- messages will be appended here via JS -->
-          </div>
+      <main class="chatbox" id="chatbox">
+        <!-- Latest user question appears here (above AI response) -->
+        <div
+          id="currentQuestion"
+          class="current-question"
+          aria-live="polite"
+        ></div>
 
-          <form id="chatForm" class="chat-form">
-            <label for="userInput" class="visually-hidden">Message</label>
-            <input
-              id="userInput"
-              name="userInput"
-              type="text"
-              placeholder="Ask me about products or routines…"
-              autocomplete="off"
-              required
-            />
-            <button type="submit" id="sendBtn">
-              <span class="material-icons">send</span>
-              <span class="visually-hidden">Send</span>
-            </button>
-          </form>
-        </section>
+        <div id="chatWindow" class="chat-window" aria-live="polite" role="log">
+          <!-- messages are appended here -->
+        </div>
+
+        <form
+          id="chatForm"
+          class="chat-form"
+          autocomplete="off"
+          aria-label="Chat form"
+        >
+          <label for="userInput" class="visually-hidden">Message</label>
+          <input
+            id="userInput"
+            name="userInput"
+            type="text"
+            placeholder="Ask about products, routines, or recommendations…"
+            required
+          />
+          <button type="submit" id="sendBtn" aria-label="Send">
+            <span class="material-icons">send</span>
+          </button>
+        </form>
       </main>
 
-      <!------- Footer Links ------->
       <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
+        <p>&copy; 2025 L'Oréal — Demo Project</p>
         <nav>
-          <!-- These URLs are placeholders -->
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Contact</a>
+          <a href="#" aria-hidden="true">Privacy Policy</a>
+          <a href="#" aria-hidden="true">Terms of Use</a>
+          <a href="#" aria-hidden="true">Contact</a>
         </nav>
       </footer>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
+    <!-- For local testing only. Remove when using Cloudflare Worker with secret. -->
     <script src="secrets.js"></script>
+
+    <!-- Main app logic -->
     <script src="script.js"></script>
   </body>
 </html>
